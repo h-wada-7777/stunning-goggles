@@ -105,42 +105,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       weekendStyle: TextStyle(color: Colors.red),
                       weekdayStyle: TextStyle(color: Colors.blue),
                     ),
-                    calendarStyle: CalendarStyle(
-                      cellMargin: EdgeInsets.zero, // 日付セルのマージンをゼロにする
-                       defaultDecoration: BoxDecoration(
-                       border: Border.all(),
-                       ),
-                       todayDecoration: BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                       border: Border.all(),
-                       ),
-                       outsideDecoration: BoxDecoration(
-                       border: Border.all(),
-                      ),
-                      weekendDecoration: BoxDecoration(
-                      border: Border.all(),
-                      ),
-                      
-                      outsideDaysVisible: true,
-                      selectedDecoration: BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                      markersAlignment: Alignment.bottomCenter,
-                      defaultTextStyle: TextStyle(color: Colors.black),
-                    ),
                   ),
             const SizedBox(height: 8.0),
-            Expanded(
-              child: ListView.builder(
-                itemCount: _getEventsForDay(_selectedDay ?? _focusedDay).length,
-                itemBuilder: (context, index) {
-                  final event = _getEventsForDay(_selectedDay ?? _focusedDay)[index];
-                  return ListTile(
-                    title: Text(event),
-                  );
-                },
+            ..._getEventsForDay(_selectedDay ?? _focusedDay).map(
+              (event) => ListTile(
+                title: Text(event),
               ),
             ),
           ],
